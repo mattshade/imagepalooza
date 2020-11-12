@@ -1,61 +1,106 @@
-require(`dotenv`).config({
-  path: `.env`,
-})
-
-const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
-
+/* eslint-disable @typescript-eslint/camelcase */
 module.exports = {
   siteMetadata: {
-    siteTitleAlt: `Image Machine`,
+    title: 'Gatstrap',
+    description: 'Gatsby starter for bootstrap a blog',
+    siteUrl: 'https://gatstrap.netlify.com',
+    author: 'jaxx2104',
+    twitter: 'jaxx2104',
+    adsense: '',
   },
+  pathPrefix: '/',
   plugins: [
     {
-      resolve: `@lekoarts/gatsby-theme-minimal-blog`,
-      // See the theme's README for all available options
+      resolve: 'gatsby-source-filesystem',
       options: {
-        
+        path: `${__dirname}/content/posts/`,
+        name: 'posts',
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_ID,
+        path: `${__dirname}/content/images/`,
+        name: 'images',
       },
     },
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 750,
+              linkImagesToOriginal: false,
+              wrapperStyle: 'margin-bottom: 1.0725rem;',
+            },
+          },
+          {
+            resolve: 'gatsby-remark-responsive-iframe',
+            options: {
+              wrapperStyle: 'margin-bottom: 1.0725rem',
+            },
+          },
+          'gatsby-remark-prismjs',
+          'gatsby-remark-copy-linked-files',
+          'gatsby-remark-smartypants',
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `minimal-blog - @lekoarts/gatsby-theme-minimal-blog`,
-        short_name: `minimal-blog`,
-        description: `Image comparison machine`,
-        start_url: `/`,
-        background_color: `#fff`,
-        theme_color: `#6B46C1`,
-        display: `standalone`,
+        name: 'Gatstrap',
+        short_name: 'Gatstrap',
+        description: 'Gatsby starter for bootstrap a blog',
+        homepage_url: 'https://gatstrap.netlify.com',
+        start_url: '/',
+        background_color: '#fff',
+        theme_color: '#673ab7',
+        display: 'standalone',
         icons: [
           {
-            src: `/android-chrome-192x192.png`,
-            sizes: `192x192`,
-            type: `image/png`,
+            src: '/img/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
           },
           {
-            src: `/android-chrome-512x512.png`,
-            sizes: `512x512`,
-            type: `image/png`,
+            src: '/img/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
           },
         ],
       },
     },
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-netlify`,
-    shouldAnalyseBundle && {
-      resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
+    {
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        analyzerMode: `static`,
-        reportFilename: `_bundle.html`,
-        openAnalyzer: false,
+        trackingId: '',
       },
     },
-  ].filter(Boolean),
+    {
+      resolve: 'gatsby-plugin-netlify',
+      options: {
+        mergeSecurityHeaders: true,
+        mergeLinkHeaders: true,
+        mergeCachingHeaders: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-graphql-codegen',
+      options: {
+        fileName: `types/graphql-types.d.ts`,
+      },
+    },
+    'gatsby-plugin-catch-links',
+    'gatsby-plugin-offline',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sass',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-twitter',
+    'gatsby-plugin-typescript',
+    'gatsby-transformer-sharp',
+  ],
 }

@@ -1,26 +1,17 @@
 var plugins = [{
-      plugin: require('/Users/matthewshade/imagepalooza/node_modules/gatsby-plugin-mdx/gatsby-ssr'),
-      options: {"plugins":[{"resolve":"/Users/matthewshade/imagepalooza/node_modules/gatsby-remark-images","id":"0c1a4f1b-2b47-52f8-b507-0590421487b0","name":"gatsby-remark-images","version":"3.4.2","pluginOptions":{"plugins":[],"maxWidth":960,"quality":90,"linkImagesToOriginal":false,"showCaptions":false,"markdownCaptions":false,"sizeByPixelDensity":false,"backgroundColor":"white","withWebp":false,"tracedSVG":false,"loading":"lazy","disableBgImageOnAlpha":false,"disableBgImage":false},"nodeAPIs":["pluginOptionsSchema"],"browserAPIs":["onRouteUpdate"],"ssrAPIs":[]}],"extensions":[".mdx",".md"],"gatsbyRemarkPlugins":[{"resolve":"gatsby-remark-images","options":{"maxWidth":960,"quality":90,"linkImagesToOriginal":false}}],"defaultLayouts":{},"remarkPlugins":[],"rehypePlugins":[],"mediaTypes":["text/markdown","text/x-markdown"]},
+      plugin: require('/Users/matthewshade/imagepalooza/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
+      options: {"plugins":[],"name":"Gatstrap","short_name":"Gatstrap","description":"Gatsby starter for bootstrap a blog","homepage_url":"https://gatstrap.netlify.com","start_url":"/","background_color":"#fff","theme_color":"#673ab7","display":"standalone","icons":[{"src":"/img/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},{"src":"/img/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}],"cache_busting_mode":"query","include_favicon":true,"legacy":true,"theme_color_in_head":true,"cacheDigest":null},
     },{
-      plugin: require('/Users/matthewshade/imagepalooza/node_modules/gatsby-plugin-feed/gatsby-ssr'),
-      options: {"plugins":[],"query":"\n    {\n      site {\n        siteMetadata {\n          title: siteTitle\n          description: siteDescription\n          siteUrl\n          site_url: siteUrl\n        }\n      }\n    }\n  ","feeds":[{"query":"\n        {\n          allPost(sort: { fields: date, order: DESC }) {\n            nodes {\n              title\n              date(formatString: \"MMMM D, YYYY\")\n              excerpt\n              slug\n              html\n            }\n          }\n        }\n      ","output":"rss.xml","title":"bla"}]},
+      plugin: require('/Users/matthewshade/imagepalooza/node_modules/gatsby-plugin-google-analytics/gatsby-ssr'),
+      options: {"plugins":[],"trackingId":""},
+    },{
+      plugin: require('/Users/matthewshade/imagepalooza/node_modules/gatsby-plugin-offline/gatsby-ssr'),
+      options: {"plugins":[]},
     },{
       plugin: require('/Users/matthewshade/imagepalooza/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
       options: {"plugins":[]},
     },{
-      plugin: require('/Users/matthewshade/imagepalooza/node_modules/gatsby-plugin-theme-ui/gatsby-ssr'),
-      options: {"plugins":[]},
-    },{
-      plugin: require('/Users/matthewshade/imagepalooza/node_modules/gatsby-plugin-google-analytics/gatsby-ssr'),
-      options: {"plugins":[],"head":false,"anonymize":false,"respectDNT":false,"exclude":[],"pageTransitionDelay":0},
-    },{
       plugin: require('/Users/matthewshade/imagepalooza/node_modules/gatsby-plugin-sitemap/gatsby-ssr'),
-      options: {"plugins":[],"output":"/sitemap.xml","createLinkInHead":true},
-    },{
-      plugin: require('/Users/matthewshade/imagepalooza/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
-      options: {"plugins":[],"name":"minimal-blog - @lekoarts/gatsby-theme-minimal-blog","short_name":"minimal-blog","description":"Image comparison machine","start_url":"/","background_color":"#fff","theme_color":"#6B46C1","display":"standalone","icons":[{"src":"/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},{"src":"/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}],"cache_busting_mode":"query","include_favicon":true,"legacy":true,"theme_color_in_head":true,"cacheDigest":null},
-    },{
-      plugin: require('/Users/matthewshade/imagepalooza/node_modules/gatsby-plugin-offline/gatsby-ssr'),
       options: {"plugins":[]},
     }]
 // During bootstrap, we write requires at top of this file which looks like:
